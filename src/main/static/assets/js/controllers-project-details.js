@@ -3,9 +3,13 @@
 
     angular.module('tribe-project-details', ['tribe-app-service', 'ngRoute'])
         .config(['$routeProvider', function ($routeProvider) {
-            $routeProvider.when('/projects/:project', {
-                templateUrl: 'app/page-project-details.html'
-            });
+            $routeProvider
+                .when('/projects/:project', {
+                    templateUrl: 'app/page-project-details.html'
+                })
+                .when('/p/:project', {
+                    templateUrl: 'app/page-project-details.html'
+                });
         }])
         .controller('ProjectDetailsController', [
             '$scope', '$routeParams', '$sce', '$templateRequest', 'tribeAppService', '$anchorScroll', '$timeout', '$location',
