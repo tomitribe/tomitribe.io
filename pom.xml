@@ -164,8 +164,8 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v0.12.4</nodeVersion>
-                            <npmVersion>2.10.1</npmVersion>
+                            <nodeVersion>v12.6.0</nodeVersion>
+                            <npmVersion>6.9.0</npmVersion>
                         </configuration>
                     </execution>
                     <execution>
@@ -179,13 +179,13 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>gulp-build</id>
+                        <id>npm-build</id>
                         <phase>generate-resources</phase>
                         <goals>
-                            <goal>gulp</goal>
+                            <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>build</arguments>
+                            <arguments>run build</arguments>
                         </configuration>
                     </execution>
                     <execution>

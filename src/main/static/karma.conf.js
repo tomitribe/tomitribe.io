@@ -1,12 +1,12 @@
 // Karma configuration
 // Generated on Wed Oct 07 2015 21:40:44 GMT-0400 (EDT)
+process.env.CHROME_BIN = require('puppeteer').executablePath();
 
 module.exports = function (config) {
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: '',
-
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -15,15 +15,14 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            './bower_components/jquery/dist/jquery.js',
-            './bower_components/angular/angular.js',
-            './bower_components/angular-mocks/angular-mocks.js',
-            './bower_components/angular-route/angular-route.js',
-            './bower_components/underscore/underscore.js',
+            './node_modules/jquery/dist/jquery.js',
+            './node_modules/angular/angular.js',
+            './node_modules/angular-mocks/angular-mocks.js',
+            './node_modules/angular-route/angular-route.js',
+            './node_modules/underscore/underscore.js',
             './assets/js/*.js',
             '../../test/static/**/*.js'
         ],
-
 
         // list of files to exclude
         exclude: [],
@@ -31,7 +30,7 @@ module.exports = function (config) {
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-        preprocessors: {},
+        preprocessors: { },
 
 
         // test results reporter to use
@@ -60,8 +59,8 @@ module.exports = function (config) {
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
         browsers: [
-            // 'Chrome', // uncomment me for local unit testing [not in a headless server]
-            'PhantomJS'
+            //'Chrome', // uncomment me for local unit testing [not in a headless server]
+            'ChromeHeadless'
         ],
 
 

@@ -1,35 +1,23 @@
 describe("main page top header tests", function () {
     beforeEach(module('tribe-controllers-home'));
 
-    beforeEach(function () {
-        var spy = spyOn(angular, 'element').and.callFake(function () {
-            spy.and.callThrough(); // disabling spy otherwise angular gets nuts.
-            return {
-                scroll: function (callback) {
-                    callback();
-                },
-                scrollTop: function () {
-                    return 3;
-                }
-            };
-        });
-    });
-
     it("should scroll three times slower than the whole page", function () {
-        var cssValue;
         inject(function ($controller) {
-            $controller('HeaderImageController', {
+            const opts = {
                 $element: {
                     css: function (value) {
-                        cssValue = value;
+                        expect(JSON.stringify(value)).toBe(JSON.stringify({
+                            'transform': 'translateY(1px)'
+                        }));
+                        done();
                     }
                 },
                 $window: {}
-            });
+            };
+            $controller('HeaderImageController', opts);
+            angular.element(opts.$window).scroll({});
         });
-        expect(JSON.stringify(cssValue)).toBe(JSON.stringify({
-            'transform': 'translateY(1px)'
-        }));
+
     });
 });
 
