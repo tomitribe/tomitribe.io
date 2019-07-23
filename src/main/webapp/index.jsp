@@ -33,22 +33,22 @@
     <link rel="stylesheet" href="app/style/app.css"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-38816470-2"></script>
+
 </head>
 <body>
 <script>
-    // Google Analytics
-    (function() {
-        try {
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-            ga('create', 'UA-38816470-2', 'auto');
-            ga('send', 'pageview');
-        } catch(e) {
-            window.console.log(e);
-        }
-    }());
+    // check to get production analytics only
+    window.PROD_ENV = location.host === "tomitribe.io";
+    if (window.PROD_ENV) {
+        window.GA_ID = 'UA-38816470-2';
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {dataLayer.push(arguments);}
+        window.gtag = gtag;
+
+        gtag('js', new Date());
+        gtag('config', window.GA_ID, { 'send_page_view': false });
+    }
 </script>
 <ng-view autoscroll="true"></ng-view>
 <script type="text/javascript" src="app/third-party/source.js"></script>
