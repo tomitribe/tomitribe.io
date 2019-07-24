@@ -23,12 +23,13 @@
 
             return {
                 loadLongDocumentation: function (projectName, callback) {
-                    $http.get('rest/project/' + projectName + '/long_documentation').then(function (data) {
-                        callback(data);
+                    $http.get('rest/project/' + projectName + '/long_documentation').then(function (resp) {
+                        callback(resp.data);
                     });
                 },
                 whenReady: function (callback) {
-                    getPromise.then(function (data) {
+                    getPromise.then(function (resp) {
+                        var data = resp.data;
                         if (!result) {
                             if (!data.dtoPage) return;
                             var contributors = normalizeArray(data.dtoPage.contributors);
