@@ -212,7 +212,7 @@
         <url>scm:git:git@github.com:tomitribe/tomitribe.io.git</url>
         <connection>scm:git:git@github.com:tomitribe/tomitribe.io.git</connection>
         <developerConnection>scm:git:git@github.com:tomitribe/tomitribe.io.git</developerConnection>
-        <tag>0.0.8</tag>
+        <tag>0.0.1</tag>
     </scm>
 
     <repositories>
