@@ -1,10 +1,11 @@
 var applicationContext = 'ROOT';
 
 var gulp = require('gulp');
-var jade = require('gulp-jade');
+var pug = require('gulp-pug');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
-var uglify = require('gulp-uglify');
+var cleanCSS = require('gulp-clean-css');
+var minify = require('gulp-uglify'); // Can to be replaced by `gulp-terser` for es6+
 var sourcemaps = require('gulp-sourcemaps');
 var concat = require('gulp-concat');
 var del = require('del');
@@ -13,9 +14,9 @@ var gulpif = require('gulp-if');
 var jslint = require('gulp-jslint');
 var KarmaServer = require('karma').Server;
 
-gulp.task('jade', function () {
-    return gulp.src('./assets/**/*.jade')
-        .pipe(jade({
+gulp.task('pug', function () {
+    return gulp.src('./assets/**/*.pug')
+        .pipe(pug({
             locals: {}
         }))
         .pipe(gulp.dest('../../../target/static-resources/app/'))
@@ -34,6 +35,7 @@ gulp.task('autoprefixer', function () {
 gulp.task('css-concat', function () {
     return gulp.src(['../../../target/static-resources/app/style/sprite.css', '../../../target/static-resources/app/style/main.css'])
         .pipe(concat('app.css'))
+        .pipe(cleanCSS())
         .pipe(gulp.dest('../../../target/static-resources/app/style/'))
 });
 gulp.task('css-build', gulp.series('sass', 'autoprefixer', 'css-concat'));
@@ -42,7 +44,9 @@ gulp.task('css-third-party', function () {
         './node_modules/lato/css/lato.css',
         './node_modules/normalize.css/normalize.css',
         './node_modules/font-awesome/css/font-awesome.css'
-    ]).pipe(concat('source.css')).pipe(gulp.dest('../../../target/static-resources/app/third-party/style'));
+    ])
+        .pipe(concat('source.css'))
+        .pipe(gulp.dest('../../../target/static-resources/app/third-party/style'));
 });
 
 gulp.task('css-third-party-resources:font-awesome', function () {
@@ -101,18 +105,19 @@ gulp.task('copy-js', function () {
     return gulp.src('./assets/**/*.js')
         .pipe(gulp.dest('../../../target/static-resources/app/'));
 });
-gulp.task('uglify', function () {
+gulp.task('minify', function () {
     return gulp.src('./assets/**/*.js')
         .pipe(sourcemaps.init())
         .pipe(concat('app.min.js'))
-        .pipe(uglify({
+        .pipe(minify({
+            output: { ascii_only: true },
             mangle: false // otherwhise the sourcemap/debugger does not work properly.
         }))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('../../../target/static-resources/app/js/'));
 });
 
-gulp.task('js-build', gulp.series('lint', 'copy-js', 'uglify'));
+gulp.task('js-build', gulp.series('lint', 'copy-js', 'minify'));
 
 gulp.task('js-third-party', function () {
     return gulp.src([
@@ -120,7 +125,18 @@ gulp.task('js-third-party', function () {
         './node_modules/jquery/dist/jquery.js',
         './node_modules/angular/angular.js',
         './node_modules/angular-route/angular-route.js'
-    ]).pipe(concat('source.js')).pipe(gulp.dest('../../../target/static-resources/app/third-party/'));
+    ])
+        .pipe(sourcemaps.init())
+        .pipe(concat('source.js'))
+        .pipe(minify({
+            //minify but leave licenses and source map
+            output: {
+                ascii_only: true,
+                comments: /^!|\b(copyright|license)\b|@(preserve|license|cc_on)\b/i
+            }
+        }))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('../../../target/static-resources/app/third-party/'));
 });
 gulp.task('js', gulp.series('js-test', 'js-build', 'js-third-party'));
 
@@ -135,7 +151,7 @@ gulp.task('copy-to-target', function () {
         .pipe(gulp.dest('../../../target/apache-tomee/webapps/' + applicationContext + '/app/'));
 });
 
-gulp.task('build', gulp.series('clean', 'jade', 'images', 'css', 'js'));
+gulp.task('build', gulp.series('clean', 'pug', 'images', 'css', 'js'));
 gulp.task('default', gulp.series('build', 'copy-to-target'), function () {
     gulp.watch(
         ['./assets/**/*', '../../test/**/*.js'],
