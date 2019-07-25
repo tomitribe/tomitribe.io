@@ -106,6 +106,7 @@ gulp.task('uglify', function () {
         .pipe(sourcemaps.init())
         .pipe(concat('app.min.js'))
         .pipe(uglify({
+            output: { ascii_only: true },
             mangle: false // otherwhise the sourcemap/debugger does not work properly.
         }))
         .pipe(sourcemaps.write('.'))
