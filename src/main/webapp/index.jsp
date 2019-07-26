@@ -1,6 +1,7 @@
 <%@page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8" language="java" %>
 <html ng-app="tribeio">
 <head><title>Tomitribe.io</title>
+    <link rel="shortcut icon" href="app/images/tt-fav.png">
     <script>
         // doc base
         (function () {

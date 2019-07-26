@@ -19,6 +19,49 @@
         <jsp-file>/index.jsp</jsp-file>
     </servlet>
 
+    <!-- Expiration filter adds user side caching for better user experience / faster second page load -->
+    <filter>
+        <filter-name>ExpiresFilter</filter-name>
+        <filter-class>org.apache.catalina.filters.ExpiresFilter</filter-class>
+        <init-param>
+            <param-name>ExpiresByType image</param-name>
+            <param-value>access plus 1 year</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ExpiresByType text/css</param-name>
+            <param-value>access plus 6 month</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ExpiresByType text/javascript</param-name>
+            <param-value>access plus 6 month</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ExpiresDefault</param-name>
+            <param-value>access plus 2 hours</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>ExpiresThirdParty</filter-name>
+        <filter-class>org.apache.catalina.filters.ExpiresFilter</filter-class>
+        <init-param>
+            <param-name>ExpiresDefault</param-name>
+            <param-value>access plus 1 year</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>ExpiresFilter</filter-name>
+        <url-pattern>/app/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>ExpiresThirdParty</filter-name>
+        <url-pattern>/app/third-party/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/*</url-pattern>

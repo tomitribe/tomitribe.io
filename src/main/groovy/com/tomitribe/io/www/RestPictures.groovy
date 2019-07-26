@@ -28,7 +28,7 @@ class RestPictures {
         )
         def cc = new CacheControl()
         cc.setPrivate(false)
-        cc.setMaxAge(TimeUnit.DAYS.toSeconds(1) as Integer)
+        cc.setMaxAge(TimeUnit.DAYS.toSeconds(40) as Integer)
         builder.cacheControl(cc)
         builder.build()
     }
@@ -43,7 +43,7 @@ class RestPictures {
         )
         def cc = new CacheControl()
         cc.setPrivate(false)
-        cc.setMaxAge(TimeUnit.DAYS.toSeconds(1) as Integer)
+        cc.setMaxAge(TimeUnit.DAYS.toSeconds(40) as Integer)
         builder.cacheControl(cc)
         builder.build()
     }
