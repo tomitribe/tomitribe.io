@@ -14,24 +14,29 @@ class HttpBean {
     private Logger logger = Logger.getLogger('tribeio')
     private String token = System.getProperty("io.github.token", System.getenv()['github_atoken'])
 
-    URL getUrlWithToken(String path) {
-        (path + (path.contains('?') ? '&' : '?') + "access_token=$token").toURL()
-    }
-
     String getUrlContentWithToken(String path) {
-        getUrlWithToken(path).getText(StandardCharsets.UTF_8.name())
+        path.toURL().getText(
+            [requestProperties: [
+                'Accept': 'application/vnd.github+json',
+                'Authorization': "token $token"
+            ]],
+            StandardCharsets.UTF_8.name()
+        )
     }
 
     def loadGithubResourceJson(String projectName, String release, String resourceName) {
-        def url = "${BASE_URL}/repos/${ServiceGithub.DOCUMENTATION_ROOT}/$projectName/contents/$resourceName?access_token=$token&ref=$release"
+        def url = "${BASE_URL}/repos/${ServiceGithub.DOCUMENTATION_ROOT}/$projectName/contents/$resourceName?ref=$release"
         new JsonSlurper().parseText(getUrlContentWithToken(url))
     }
 
     String loadGithubResourceHtml(String projectName, String release, String resourceName) {
-        def url = "${BASE_URL}/repos/${ServiceGithub.DOCUMENTATION_ROOT}/$projectName/contents/$resourceName?access_token=$token&ref=$release"
+        def url = "${BASE_URL}/repos/${ServiceGithub.DOCUMENTATION_ROOT}/$projectName/contents/$resourceName?ref=$release"
         try {
-            getUrlWithToken(url).getText(
-                    [requestProperties: [Accept: 'application/vnd.github.3.html']],
+            url.toURL().getText(
+                    [requestProperties: [
+                        'Accept': 'application/vnd.github.3.html',
+                        'Authorization': "token $token"
+                    ]],
                     StandardCharsets.UTF_8.name()
             )
         } catch (FileNotFoundException ignore) {
