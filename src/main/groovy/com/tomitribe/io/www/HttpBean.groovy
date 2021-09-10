@@ -17,7 +17,7 @@ class HttpBean {
     String getUrlContentWithToken(String path) {
         path.toURL().getText(
             [requestProperties: [
-                'Accept': 'application/vnd.github.3.raw+json', 
+                'Accept': 'application/vnd.github.3.raw', 
                 'Authorization': "token $token"
             ]],
             StandardCharsets.UTF_8.name()
