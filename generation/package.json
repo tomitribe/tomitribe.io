@@ -10,42 +10,43 @@
   "license": "Apache-2.0",
   "scripts": {
     "build": "gulp build",
-    "gulp": "gulp",
-    "karma": "karma",
-    "test": "karma start"
+    "watch": "gulp"
   },
   "dependencies": {
-    "jquery": "2.2.4",
-    "underscore": "1.9.1",
-    "angular": "1.7.8",
+    "angular": "1.8.3",
+    "angular-mocks": "1.8.3",
     "angular-route": "1.7.8",
-    "angular-mocks": "1.7.8",
-    "normalize.css": "3.0.3",
-    "font-awesome": "4.4.0",
+    "font-awesome": "4.7.0",
+    "foundation-sites": "5.5.3",
+    "jquery": "3.6.0",
     "lato": "git+https://github.com/mrkelly/lato#v0.3.0",
-    "foundation-sites": "5.5.3"
+    "normalize.css": "8.0.1",
+    "underscore": "1.13.4"
   },
   "devDependencies": {
-    "del": "5.0.0",
+    "del": "7.0.0",
     "gulp": "4.0.2",
     "gulp-autoprefixer": "6.1.0",
-    "gulp-clean-css": "4.2.0",
+    "gulp-clean-css": "4.3.0",
     "gulp-concat": "2.6.1",
     "gulp-if": "3.0.0",
     "gulp-jslint": "1.0.10",
-    "gulp-pug": "4.0.1",
-    "gulp-sass": "4.0.2",
-    "gulp-sourcemaps": "2.6.5",
+    "gulp-pug": "5.0.0",
+    "gulp-sass": "5.1.0",
+    "gulp-sourcemaps": "3.0.0",
     "gulp-uglify": "3.0.2",
-    "gulp.spritesmith": "6.10.1",
-    "jasmine": "^3.4.0",
-    "jasmine-core": "^3.4.0",
-    "jstransformer-marked": "1.0.3",
-    "karma": "^4.2.0",
-    "karma-chrome-launcher": "^3.0.0",
-    "karma-jasmine": "^2.0.1",
-    "karma-ng-html2js-preprocessor": "^1.0.0",
-    "puppeteer": "^1.19.0"
+    "gulp.spritesmith": "6.13.0",
+    "jasmine": "^4.3.0",
+    "jasmine-core": "^4.3.0",
+    "jstransformer-marked": "1.2.0",
+    "sass": "1.54.5"
   },
-  "engine": "node >= 8"
+  "overrides": {
+    "graceful-fs": "^4.2.10"
+  },
+  "engines": {
+    "node": ">15",
+    "npm": ">8.3.0"
+  },
+  "type": "module"
 }

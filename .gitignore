@@ -1,8 +1,7 @@
 *.iml
 .idea
 target/
-src/main/static/node_modules/
-src/main/static/bower_components/
-src/main/webapp/app
+node_modules/
+webapp/app/
 npm-debug.log
 node_tmp
