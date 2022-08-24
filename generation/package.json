@@ -43,7 +43,8 @@
     "sass": "1.54.5"
   },
   "overrides": {
-    "graceful-fs": "^4.2.10"
+    "graceful-fs": "^4.2.10",
+    "glob-parent": "^5.1.2"
   },
   "engines": {
     "node": ">15",
