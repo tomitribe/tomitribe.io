@@ -1,0 +1,21 @@
+{
+  "name": "tomitribe.io-static",
+  "version": "1.0.0",
+  "description": "The tomitribe.io website builder and static renderer",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build:webapp": "npm ci --prefix generation && npm run build --prefix generation",
+    "build:static": "npm ci --prefix renderer && npm run build --prefix renderer",
+    "serve:webapp": "npm ci --prefix renderer && npm run serve-webapp --prefix renderer",
+    "serve:static": "npm ci --prefix renderer && npm run serve-static --prefix renderer"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomitribe/tomitribe.io.git"
+  },
+  "author": "Tomitribe <contact@tomitribe.com>",
+  "bugs": {
+    "url": "https://github.com/tomitribe/tomitribe.io/issues"
+  },
+  "homepage": "https://github.com/tomitribe/tomitribe.io#readme"
+}
