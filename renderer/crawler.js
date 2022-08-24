@@ -3,7 +3,7 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
-const site = new URL('http://localhost:8080');
+const site = new URL('http://127.0.0.1:8080');
 
 const sleep = (ms) => {
   if (!ms) {
