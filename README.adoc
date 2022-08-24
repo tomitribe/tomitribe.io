@@ -15,8 +15,13 @@ npm i
 npm run build:webapp
 # static renderer (needs build:webapp run once)
 npm run build:static
+
+# Gh-pages push steps:
+# push webapp folder to gh-pages-webapp branch (needs build:webapp run once)
+npm run push:gh-pages-webapp
+# another option will be to
 # push static folder to gh-pages branch (needs build:static run once)
-npm run push:gh-pages
+# npm run push:gh-pages
 
 # Serve(optional):
 # webapp serve (needs build:webapp run once)
