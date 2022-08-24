@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head><title>Tomitribe.io</title>
+    <link rel="shortcut icon" href="app/images/tt-fav.png">
+    <script>
+        let baseHref = '/'
+        if (location.origin.endsWith('.github.io')) {
+            const path = location.pathname.split('/');
+            if(path.length > 1) {
+                baseHref += path[1] + "/";
+            }
+        }
+        document.write("<base href='" + baseHref + "' />");
+    </script>
+    <link rel="stylesheet" href="app/third-party/style/source.css"/>
+    <link rel="stylesheet" href="app/style/app.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-38816470-2"></script>
+</head>
+<body>
+<script>
+    // check to get production analytics only
+    window.PROD_ENV = location.host === "tomitribe.io";
+    if (window.PROD_ENV) {
+        window.GA_ID = 'UA-38816470-2';
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {dataLayer.push(arguments);}
+        window.gtag = gtag;
+
+        gtag('js', new Date());
+        gtag('config', window.GA_ID, { 'send_page_view': false });
+    }
+</script>
+<ng-view autoscroll="true"></ng-view>
+<script>
+    const appendScript = (url) => {
+            return new Promise((res, rej) => {
+                const script = document.createElement("script");
+                script.type = "text/javascript";
+                script.async = true;
+                script.src = url;
+                script.onload = res
+                script.addEventListener('load',res);
+                script.onError = rej;
+                script.addEventListener('error',rej);
+                document.body.append(script);
+            });
+        };
+    window.addEventListener('DOMContentLoaded',async (event) => {
+        await ["app/third-party/source.js", "app/js/app.min.js"].reduce(async (acc, url) => {
+            await acc;
+            return appendScript(url);
+        }, Promise.resolve()).then(() => {
+            angular.bootstrap(document, ['tribeio']);
+        }).catch(e => {
+            //console.error(e);
+            // fixes for static content
+            // docs href fix
+            Array.from(document.querySelectorAll('a[href^="#"]'))
+                .forEach(
+                    (element) => {
+                        const href = element.getAttribute('href');
+                        if (href.startsWith('#')) {
+                                element.setAttribute('href', location.pathname + href);
+                        }
+                    }
+                );
+        })
+    });
+</script>
+</body>
+</html>
