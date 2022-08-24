@@ -1,4 +1,4 @@
-<html ng-app="tribeio">
+<html>
 <head><title>Tomitribe.io</title>
     <link rel="shortcut icon" href="app/images/tt-fav.png">
     <base href='/' />
@@ -21,9 +21,27 @@
         gtag('js', new Date());
         gtag('config', window.GA_ID, { 'send_page_view': false });
     }
+
+    const appendScript = (url) => {
+        return new Promise(res => {
+            const s = document.createElement("script");
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = url;
+            s.onload = function() {
+               res(); 
+            }
+            document.body.append(s);
+        });
+    };
+    window.addEventListener('DOMContentLoaded',async (event) => {
+        await ["app/third-party/source.js", "app/js/app.min.js"].reduce(async (acc, url) => {
+            await acc;
+            return appendScript(url);
+        }, Promise.resolve()).then(console.log);
+        angular.bootstrap(document, ['tribeio']);
+    });
 </script>
 <ng-view autoscroll="true"></ng-view>
-<script type="text/javascript" src="app/third-party/source.js"></script>
-<script type="text/javascript" src="app/js/app.min.js"></script>
 </body>
 </html>
