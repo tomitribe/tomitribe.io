@@ -9,8 +9,9 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "start": "concurrently --kill-others \"npm run serve-webapp\" \"npm run crawler\"",
+    "build": "concurrently --kill-others \"npm run serve-webapp\" \"npm run crawler\"",
     "crawler": "node crawler.js",
+    "postcrawler": "npm run copy-assets",
     "copy-assets": "node copy-assets.js",
     "serve-webapp": "http-server -c10 ../webapp/",
     "preserve-static": "npm run copy-assets",
