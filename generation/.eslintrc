@@ -1,0 +1,17 @@
+{
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "jquery": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "globals": {
+      "angular": "readonly",
+      "_": "readonly"
+    },
+    "rules": {
+      "strict": "error"
+    }
+}

@@ -1,5 +1,5 @@
+'use strict';
 (function () {
-    'use strict';
 
     angular.module('tribe-app-service', [])
         .factory('tribeAppService', ['$http', function ($http) {

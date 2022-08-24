@@ -1,5 +1,5 @@
+'use strict';
 (function () {
-    'use strict';
 
     angular.module('tribe-twitter', ['tribe-app-service'])
         .controller('TwitterUpdatesController', ['$scope', 'tribeAppService', '$timeout',

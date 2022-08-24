@@ -1,5 +1,5 @@
+'use strict';
 (function () {
-    'use strict';
 
     angular.module('tribe-app-directives', [])
         .directive('tribeShareProject', ['$window', function ($window) {

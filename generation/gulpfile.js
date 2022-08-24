@@ -9,7 +9,7 @@ import concat from 'gulp-concat';
 import { deleteAsync } from 'del';
 import spritesmith from 'gulp.spritesmith';
 import gulpif from 'gulp-if';
-import jslint from 'gulp-jslint';
+import gulpESLint from 'gulp-eslint-new';
 import dartSass from 'sass';
 import rename from 'gulp-rename';
 //import util from 'gulp-util';
@@ -79,20 +79,13 @@ gulp.task('sprites', function () {
 gulp.task('images', gulp.series('copy-images', 'sprites'));
 
 gulp.task('lint', function () {
-    return gulp.src('./assets/**/*.js').pipe(jslint({
-            node: false,
-            evil: false,
-            nomen: true,
-            vars: true,
-            unparam: true,
-            global: [],
-            predef: ['angular', '_', 'window', '$', 'hljs'],
-            edition: '2014-07-08',
-            errorsOnly: true,
-        }).on('error', function () {
-            // no-op
-        })
-    );
+    return gulp.src('./assets/**/*.js')
+    .pipe(gulpESLint({
+        fix: true,
+        warnIgnored: true
+    }))
+    .pipe(gulpESLint.fix())
+    .pipe(gulpESLint.format());
 });
 gulp.task('copy-js', function () {
     return gulp.src('./assets/**/*.js')
