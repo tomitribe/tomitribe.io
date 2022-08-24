@@ -2,7 +2,16 @@
 <html>
 <head><title>Tomitribe.io</title>
     <link rel="shortcut icon" href="app/images/tt-fav.png">
-    <base href='/' />
+    <script>
+        let baseHref = '/'
+        if (location.origin.endsWith('.github.io')) {
+            const path = location.pathname.split('/');
+            if(path.length > 1) {
+                baseHref += path[1] + "/";
+            }
+        }
+        document.write("<base href='" + baseHref + "' />");
+    </script>
     <link rel="stylesheet" href="app/third-party/style/source.css"/>
     <link rel="stylesheet" href="app/style/app.css"/>
     <meta charset="UTF-8">
