@@ -4,10 +4,11 @@
   "description": "The tomitribe.io website builder and static renderer",
   "license": "Apache-2.0",
   "scripts": {
-    "build:webapp": "npm ci --prefix generation && npm run build --prefix generation",
-    "build:static": "npm ci --prefix renderer && npm run build --prefix renderer",
-    "serve:webapp": "npm ci --prefix renderer && npm run serve-webapp --prefix renderer",
-    "serve:static": "npm ci --prefix renderer && npm run serve-static --prefix renderer",
+    "postinstall": "npm ci --prefix generation && npm ci --prefix renderer",
+    "build:webapp": "npm run build --prefix generation",
+    "build:static": "npm run build --prefix renderer",
+    "serve:webapp": "npm run serve-webapp --prefix renderer",
+    "serve:static": "npm run serve-static --prefix renderer",
     "push:gh-pages": "git subtree push --prefix static origin gh-pages"
   },
   "repository": {

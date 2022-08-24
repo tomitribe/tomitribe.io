@@ -14,6 +14,7 @@
         .controller('ProjectDetailsController', [
             '$scope', '$routeParams', '$sce', '$templateRequest', 'tribeAppService', '$anchorScroll', '$timeout', '$location',
             function ($scope, $routeParams, $sce, $templateRequest, tribeAppService, $anchorScroll, $timeout, $location) {
+                $scope.baseURI = document.baseURI;
 
                 function prepareDocumentation(originalDocumentation) {
                     var originalEl = angular.element(originalDocumentation);

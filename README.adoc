@@ -7,6 +7,9 @@ It features the most relevant opensource projects and tools developed with the h
 == How to build and run the application locally?
 
 ```
+# Prepare steps (run once):
+npm i
+
 # Building steps:
 # webapp generation
 npm run build:webapp

@@ -9,6 +9,7 @@
         }])
         .controller('ProjectsController', ['tribeAppService', '$scope', '$window',
             function (tribeAppService, $scope, $window) {
+                $scope.baseURI = document.baseURI;
                 tribeAppService.whenReady(function (data) {
                     $scope.projects = _.values(data.projects);
                 });

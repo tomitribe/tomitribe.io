@@ -1,7 +1,8 @@
 .tribe-project-share
     h4 Share with friends
     div
-        div(tribe-share-project="twitter")
+        a(ng-href="{{'https://twitter.com/intent/tweet?text=Check out ' + baseURI + 'projects/' + project.name}}" target="_blank")
             i.fa.fa-twitter
-        div(tribe-share-project="facebook")
+
+        a(ng-href="{{'http://www.facebook.com/sharer/sharer.php?u=' + baseURI + 'projects/' + project.name}}" target="_blank")
             i.fa.fa-facebook

@@ -71,7 +71,7 @@ const sleep = (ms) => {
       if (fs.existsSync(`${folder}/index.html`)) {
         fs.unlinkSync(`${folder}/index.html`);
       }
-      fs.writeFileSync(`${folder}/index.html`, pageContent.replace('<base href="/">', ''), function (err) {
+      fs.writeFileSync(`${folder}/index.html`, pageContent.replace('<base href="/">', '').replaceAll('http://127.0.0.1:8080', 'https://tomitribe.io').replaceAll('127.0.0.1:8080', 'tomitribe.io'), function (err) {
         if (err) console.error(err);
       });
     }
