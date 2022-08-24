@@ -492,7 +492,7 @@ xYCwWC6i/xdgAHsV6nFCLvBTAAAAAElFTkSuQmCC
                     (element) => {
                         const href = element.getAttribute('href');
                         if (href.startsWith('#')) {
-                                element.setAttribute('href', location.pathname + href);
+                                element.setAttribute('href', location.origin + location.pathname + href);
                         }
                     }
                 );

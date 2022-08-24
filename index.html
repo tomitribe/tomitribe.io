@@ -4674,7 +4674,7 @@ implementations of Java EE 6, with Java EE 7 on the horizon.</blockquote></artic
                     (element) => {
                         const href = element.getAttribute('href');
                         if (href.startsWith('#')) {
-                                element.setAttribute('href', location.pathname + href);
+                                element.setAttribute('href', location.origin + location.pathname + href);
                         }
                     }
                 );
