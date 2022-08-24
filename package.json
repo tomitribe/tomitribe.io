@@ -7,7 +7,8 @@
     "build:webapp": "npm ci --prefix generation && npm run build --prefix generation",
     "build:static": "npm ci --prefix renderer && npm run build --prefix renderer",
     "serve:webapp": "npm ci --prefix renderer && npm run serve-webapp --prefix renderer",
-    "serve:static": "npm ci --prefix renderer && npm run serve-static --prefix renderer"
+    "serve:static": "npm ci --prefix renderer && npm run serve-static --prefix renderer",
+    "push:gh-pages": "git subtree push --prefix static origin gh-pages"
   },
   "repository": {
     "type": "git",
