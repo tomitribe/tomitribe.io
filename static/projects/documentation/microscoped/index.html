@@ -1,6 +1,15 @@
 <!DOCTYPE html><html><head><style>@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style><title>Tomitribe.io</title>
     <link rel="shortcut icon" href="app/images/tt-fav.png">
-    <base href="/">
+    <script>
+        let baseHref = '/'
+        if (location.origin.endsWith('.github.io')) {
+            const path = location.pathname.split('/');
+            if(path.length > 1) {
+                baseHref += path[1] + "/";
+            }
+        }
+        document.write("<base href='" + baseHref + "' />");
+    </script>
     <link rel="stylesheet" href="app/third-party/style/source.css">
     <link rel="stylesheet" href="app/style/app.css">
     <meta charset="UTF-8">
