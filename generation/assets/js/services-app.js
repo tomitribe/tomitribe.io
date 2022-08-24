@@ -62,6 +62,7 @@
                                 tweets: tweets
                             };
                         }
+                        window.tribeAppServiceLoaded = true;
                         callback(result);
                     });
                 }
