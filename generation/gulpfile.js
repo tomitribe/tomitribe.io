@@ -11,6 +11,7 @@ import spritesmith from 'gulp.spritesmith';
 import gulpif from 'gulp-if';
 import jslint from 'gulp-jslint';
 import dartSass from 'sass';
+import rename from 'gulp-rename';
 //import util from 'gulp-util';
 
 const sass = gultSass(dartSass);
@@ -97,6 +98,14 @@ gulp.task('copy-js', function () {
     return gulp.src('./assets/**/*.js')
         .pipe(gulp.dest('../webapp/app/'));
 });
+gulp.task('copy-404', function () {
+    return gulp.src('../webapp/index.html')
+        .pipe(rename(function (path) {
+            path.basename = "404";
+        }))
+        .pipe(gulp.dest('../webapp'));
+});
+
 gulp.task('minify', function () {
     return gulp.src('./assets/**/*.js')
         .pipe(sourcemaps.init())
@@ -133,7 +142,7 @@ gulp.task('js-third-party', function () {
 gulp.task('js', gulp.series('js-build', 'js-third-party'));
 
 gulp.task('clean', function (done) {
-    return deleteAsync(['../webapp/app/'], {
+    return deleteAsync(['../webapp/app/', '../webapp/404.html'], {
         force: true
     }).then(res => {
         if (res?.length) {
@@ -150,5 +159,5 @@ gulp.task('watch', function () {
     )
 });
 
-gulp.task('build', gulp.series('clean', 'pug', 'images', 'css', 'js'));
+gulp.task('build', gulp.series('clean', 'pug', 'images', 'css', 'js', 'copy-404'));
 gulp.task('default', gulp.parallel('build', 'watch'));

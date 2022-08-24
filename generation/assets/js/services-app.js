@@ -3,7 +3,7 @@
 
     angular.module('tribe-app-service', [])
         .factory('tribeAppService', ['$http', function ($http) {
-            var getPromise = $http.get('rest/application');
+            var getPromise = $http.get('rest/application.json');
             var result = null;
 
             function buildMap(list, key) {
@@ -23,7 +23,7 @@
 
             return {
                 loadLongDocumentation: function (projectName, callback) {
-                    $http.get('rest/project/' + projectName + '/long_documentation').then(function (resp) {
+                    $http.get('rest/long_documentation.json').then(function (resp) {
                         callback(resp.data);
                     });
                 },

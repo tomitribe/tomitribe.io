@@ -5,3 +5,4 @@ node_modules/
 webapp/app/
 npm-debug.log
 node_tmp
+webapp/404.html
