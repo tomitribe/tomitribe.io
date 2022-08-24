@@ -1,5 +1,5 @@
+'use strict';
 (function () {
-    'use strict';
 
     angular.module('tribe-project-long-documentation', ['tribe-app-service', 'ngRoute'])
         .config(['$routeProvider', function ($routeProvider) {
