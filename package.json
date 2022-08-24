@@ -9,7 +9,8 @@
     "build:static": "npm run build --prefix renderer",
     "serve:webapp": "npm run serve-webapp --prefix renderer",
     "serve:static": "npm run serve-static --prefix renderer",
-    "push:gh-pages": "git subtree push --prefix static origin gh-pages"
+    "push:gh-pages": "git subtree push --prefix static origin gh-pages",
+    "push:gh-pages-webapp": "git subtree push --prefix webapp origin gh-pages-webapp"
   },
   "repository": {
     "type": "git",
