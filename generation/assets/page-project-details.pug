@@ -18,7 +18,7 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
                 div.tribe-separator
                     div
                 div.tribe-github-links
-                    a(href="/projects/documentation/{{project.name}}") doc
+                    a(href="projects/documentation/{{project.name}}/") doc
                     span ,
                     a(href="https://github.com/tomitribe/{{project.name}}") source code
                     span.tribe-and and
@@ -32,7 +32,7 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
             .tribe-other-projects
                 h4 Other projects
                 article(ng-repeat="project in otherProjects")
-                    a(href="projects/{{project.name}}")
+                    a(href="projects/{{project.name}}/")
                         img(ng-src="data:image/png;base64,{{project.icon}}")
                         div
                             h4 {{project.friendlyName ? project.friendlyName : project.name}}

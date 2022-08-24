@@ -55,6 +55,17 @@
             angular.bootstrap(document, ['tribeio']);
         }).catch(e => {
             //console.error(e);
+            // fixes for static content
+            // docs href fix
+            Array.from(document.querySelectorAll('a[href^="#"]'))
+                .forEach(
+                    (element) => {
+                        const href = element.getAttribute('href');
+                        if (href.startsWith('#')) {
+                                element.setAttribute('href', location.pathname + href);
+                        }
+                    }
+                );
         })
     });
 </script>
