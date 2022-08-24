@@ -12,6 +12,8 @@ It features the most relevant opensource projects and tools developed with the h
 npm run build:webapp
 # static renderer (needs build:webapp run once)
 npm run build:static
+# push static folder to gh-pages branch (needs build:static run once)
+npm run push:gh-pages
 
 # Serve(optional):
 # webapp serve (needs build:webapp run once)
