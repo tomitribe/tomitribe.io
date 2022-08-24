@@ -71,7 +71,7 @@ const sleep = (ms) => {
       if (fs.existsSync(`${folder}/index.html`)) {
         fs.unlinkSync(`${folder}/index.html`);
       }
-      fs.writeFileSync(`${folder}/index.html`, pageContent, function (err) {
+      fs.writeFileSync(`${folder}/index.html`, pageContent.replace('<base href="/">', ''), function (err) {
         if (err) console.error(err);
       });
     }
