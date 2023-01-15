@@ -27,6 +27,7 @@ const sleep = (ms) => {
     if (!url.protocol) return false;
     if (url.origin !== site.origin) return false;
     if (url.hash) return false;
+    if (url.search) return false;
     return true;
   };
 

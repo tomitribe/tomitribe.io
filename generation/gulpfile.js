@@ -12,6 +12,7 @@ import gulpif from 'gulp-if';
 import gulpESLint from 'gulp-eslint-new';
 import dartSass from 'sass';
 import rename from 'gulp-rename';
+import replace from 'gulp-replace';
 //import util from 'gulp-util';
 
 const sass = gultSass(dartSass);
@@ -96,6 +97,10 @@ gulp.task('copy-404', function () {
         .pipe(rename(function (path) {
             path.basename = "404";
         }))
+        .pipe(
+            replace(/<ng-view.[\w\W]*<\/body>/mgi,
+        `<script>window.location.replace(location.href.replace(document.baseURI, '?/'));</script>
+</body>`))
         .pipe(gulp.dest('../webapp'));
 });
 
