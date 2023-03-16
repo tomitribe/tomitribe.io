@@ -178,5 +178,11 @@ gulp.task('watch', function () {
     )
 });
 
-gulp.task('build', gulp.series('clean', 'pug', 'images', 'css', 'js', 'copy-404'));
+gulp.task('cache', function () {
+    return gulp.src(`${webappPath}/index.html`)
+    .pipe(replace(/(\?cache=)\d+/mgi, `$1${new Date().getTime()}`))
+    .pipe(gulp.dest(`${webappPath}`))
+})
+
+gulp.task('build', gulp.series('clean', 'pug', 'images', 'css', 'js', 'cache', 'copy-404'));
 gulp.task('default', gulp.parallel('build', 'watch'));

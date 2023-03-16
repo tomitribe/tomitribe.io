@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/tomitribe/tomitribe.io/issues"
   },
-  "homepage": "https://github.com/tomitribe/tomitribe.io#readme"
+  "homepage": "https://github.com/tomitribe/tomitribe.io#readme",
+  "engines": {
+    "node": "> 14"
+  }
 }
