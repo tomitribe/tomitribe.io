@@ -27,6 +27,7 @@ const siteUrl = 'https://tomitribe.io';
 
 // get lastmodified from git
 const lastmod = (file) => execSync(`git log -1 --pretty="format:%ci" ${file.path}`);
+const cachebuster = new Date().getTime();
 
 gulp.task('sitemap', function () {
     return gulp.src([`${staticPath}/**/index.html`], {read: false})
@@ -91,7 +92,8 @@ gulp.task('copy-images', function () {
 });
 gulp.task('sprites', function () {
     return gulp.src(`${assets}/**/sprite_*.{png,jpg}`).pipe(spritesmith({
-        imgName: '../images/sprite.png',
+        imgName: `../images/sprite.png`,
+        imgPath: `../images/sprite.png?cache=${cachebuster}`,
         cssName: 'sprite.css'
     })).pipe(gulpif('*.png',
         gulp.dest(`${webappPath}/app/images`),
@@ -180,7 +182,7 @@ gulp.task('watch', function () {
 
 gulp.task('cache', function () {
     return gulp.src(`${webappPath}/index.html`)
-    .pipe(replace(/(\?cache=)\d+/mgi, `$1${new Date().getTime()}`))
+    .pipe(replace(/(\?cache=)\d+/mgi, `$1${cachebuster}`))
     .pipe(gulp.dest(`${webappPath}`))
 })
 
